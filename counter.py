@@ -4,7 +4,6 @@ from os.path import exists
 import sys
 from pickle import dump, load
 
-okay = 0
 def update_counter(file_name, reset=False):
 	""" Updates a counter stored in the file 'file_name'
 
