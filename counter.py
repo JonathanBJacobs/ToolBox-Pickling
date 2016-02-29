@@ -4,6 +4,7 @@ from os.path import exists
 import sys
 from pickle import dump, load
 
+okay = 0
 def update_counter(file_name, reset=False):
 	""" Updates a counter stored in the file 'file_name'
 
@@ -29,9 +30,25 @@ def update_counter(file_name, reset=False):
 	>>> update_counter('blah2.txt')
 	2
 	"""
-	pass
+	if (exists(file_name) == False) or reset == True:
+		f = open(file_name, 'w')
+		dump(1, f)
+		f.close()
+		return 1
+	else:
+		f = open(file_name, 'r')
+		count = load(f)
+		f.close()
+		newCount =  count + 1
+		f = open(file_name, 'w')
+		dump(newCount,f)
+		f.close()
+		return newCount
+
+
 
 if __name__ == '__main__':
+	
 	if len(sys.argv) < 2:
 		import doctest
 		doctest.testmod()
